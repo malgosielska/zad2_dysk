@@ -1,0 +1,127 @@
+zadanie 2
+- symulacja upywu czasu taka sama
+- dynamicznie dodawana kolejka
+
+obsluga rzadan na dysku twardym
+
+droga =  1 to jedna jednostka czasu = 1
+wykonywanie rzadan nie zabiera czasu, czas = 0 :))
+
+algorytmy obslugi rzadan
+FCFS - first come first served
+SSTF - sortest seek time fist
+SCAN
+C-SCAN
+--------------------------------------------
+strategie obslugi rzadan czasu rzeczyswistego
+EDF
+ED-SCAN
+
+nalozenie tych strategii na algorytmy
+wystaczy zrobic to dla jednego wybranego algorytmu :)
+
+pozycja glowicy jest dowolna (narzucona/losowana/na poczatku/na koncu)
+
+gdy nie ma aktywnyc rzadan to glowica stoi i nie zwieksza sie przebyta droga (mozna tak zaimplementowac ale nie trzeba)
+
+FCFC
+0  --------------------------------- n
+  |                . (1)
+  |  . (2)
+  |        . (3)
+  |                        . (4)  .(5)
+  |
+  |               . (6)
+  |  . (7)
+  |                              . (8)
+  |
+  \/
+t
+
+SUMUJEMY PRZEBYTA DROGE
+
+rzadanie zajmuje np jedna jednostke czasu
+
+SSTF
+                 |
+0  --------------\/------------------- n
+  |                . (1)
+  |  . (3)
+  |        . (2)
+  |                        . (6) .(7)
+  |
+  |               . (5)
+  |. (4)
+  |                                . (8)
+  |
+  \/
+t
+
+nie stosujemy mechanizmow wywlaszczania - decyzje gdzie sie przesunac podejmujemy po przejscu do danego rzadania,
+nie w trakcie pzechodzenia
+
+SCAN - docierajac do jednej kawedzi dysku zmieniaja kierunek
+cala powierzchnia od 0 do n jest caly czas skanowana i przeszukiwana
+
+mozna zrobic jakiegos boola czy sie porusza w lewo czy w prawo
+
+C - SCAN - rozni sie tylko tym, ze chodzi w jedna strone
+jak dojdziemy do krawedzi dysku to zostaje on przesuniety na poczatek i skanujemy znowu w te sama strone
+
+zresetowanie pozycji glowicy jest bezkosztowe - nie zabiera czasu
+mozna zliczac liczbe przesuniec
+
+
+OBSLUGA RZADAC CZASU RZECZYWISTEGO :
+
+EDF - wystepuja rzadania priorytetowe, ktore od razu nalezy wykonac
+nie obsluchuje tych rzadan ktroe napotka na drodze do rzadania priorytetowego - idzie do obranego celu
+
+edf - szukamy rzadania o najkrotszym deadlinie BEZ gwarancji czasu wykonania
+nie patrzy na odleglosc tylko na deadline :) jesli w tym czasie nie uda sie wykonan tego rzadania (glowica
+nie zdazy dojsc tam) to rzadanie znika/przestalo istniec, a glowica utknie w tym punkcie w ktorym to rzadanie wygaslo
+
+ zliczamy ile rzadan czasy rzeczywistego wykonalismy, a ile przepadlo
+
+gwarancja czasu wykonania - spelnienie warunku deadline - droga >= 0
+                                                             /\
+                                                              |
+                                                            droga jaka musi pokonac glowica do tego rzadania
+
+mozna zrobic wersje z wywlaszczeniem (ale nie trzeba) - tylko obydwie strategie musza tak samo to robic
+
+FD-SCAN - sprawdza gwarancje czasu wykonania
+
+fd-scan zbiera wszystko po drodze - nawet te rzadania niepriorytetowe
+nie wywlaszaczac! isc do celu, a w miedzyczasie wykonywac zadania, ktore sa po drodze
+po wykonaniu naszego celu decydujemy gdzie dalej sie poruszac
+
+jak sa dwa rzadania p czasu rzeczywistego. do wykanania i jedno jest blizej a drugie dalej -> najdalesze mozliwe do spelnienia o najkrotszym deadlinie
+np mozna posortowac wg '' deadline - droga ''  od najmniejszego  + najdalsze rzadanie od glowicy
+
+
+Mozna przyjac dysk okolo 1000
+zrobic kilka/kilkanascie tysiecy rzadan
+
+
+!!!
+statystyki
+warto liczyc czas oczekiwania procesow
+droga
+wykonane rzadania
+niewykonane rzadania
+!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
